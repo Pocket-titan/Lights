@@ -5,13 +5,6 @@ var NUM_LEDS = 48,
 
 ws281x.init(NUM_LEDS);
 
-// ---- trap the SIGINT and reset before exit
-process.on('SIGINT', function () {
-  ws281x.reset();
-  process.nextTick(function () { process.exit(0); });
-});
-
-
 // ---- animation-loop
 var offset = 0;
 setInterval(function () {
@@ -24,7 +17,6 @@ setInterval(function () {
 }, 1000 / 30);
 
 console.log('Press <ctrl>+C to exit.');
-
 
 // rainbow-colors, taken from http://goo.gl/Cs3H0v
 function colorwheel(pos) {
