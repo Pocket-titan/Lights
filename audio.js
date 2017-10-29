@@ -1,5 +1,4 @@
 var ws281x = require('rpi-ws281x-native');
-var DecibelMeter = require('decibel-meter');
 
 var NUM_LEDS = 144,
     pixelData = new Uint32Array(NUM_LEDS);
@@ -7,14 +6,20 @@ var NUM_LEDS = 144,
 ws281x.init(NUM_LEDS);
 
 // Audio stuff
-var meter = new DecibelMeter('unique-id');
-meter.sources.then((sources) => {
-  console.log(sources)
-  meter.connect(sources[0])
-})
+var readAudio = require('read-audio')
+var pull = require('pull-stream')
+var terminalBar = require('terminal-bar')
 
-meter.on('sample', (dB, percent, value) => console.log(`${dB} dB`)) // display current dB level
-meter.listen()
+pull(
+  readAudio(),
+  pull.map(function (arr, enc, cb) {
+    var data = [].slice.call(arr.data, 0, 128)
+    return terminalBar(data) + "\n"
+  }),
+  pull.drain(function (str) {
+    process.stdout.write(str)
+  })
+)
 
 // ---- trap the SIGINT and reset before exit
 process.on('SIGINT', function () {
