@@ -18,8 +18,8 @@ setInterval(function () {
     pixelData[led] = get_random_color()
   }
   ws281x.render(pixelData);
-  ws281x.setBrightness(Math.round(Math.random()*80 + (255 - 80)));
-}, 1000);
+  ws281x.setBrightness(Math.round(Math.random()*200 + (255 - 200)));
+}, 100);
 
 function get_random_color() {
   var colors = [
@@ -33,7 +33,7 @@ function get_random_color() {
   ]
   var random_color = colors[Math.floor(Math.random()*colors.length)];
   console.log(random_color)
-  return rgb2Int(random_color['r'], random_color['g'], random_color['b'])
+  return rgb2Int(random_color['r'], random_color['b'], random_color['g'])
 }
 
 function rgb2Int(r, g, b) {
