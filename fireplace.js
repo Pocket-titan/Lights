@@ -12,14 +12,21 @@ process.on('SIGINT', function () {
 });
 
 // ---- animation-loop
-var time = 0
-setInterval(function () {
+function animation_loop () {
   for (var led = 0; led < NUM_LEDS; led++) {
     pixelData[led] = get_random_color()
   }
   ws281x.render(pixelData);
   ws281x.setBrightness(Math.round(Math.random()*200 + (255 - 200)));
-}, 100);
+}
+
+(function loop() {
+    var rand = Math.round(Math.random() * (5000 - 4000)) + 4000;
+    setTimeout(function() {
+            animation_loop();
+            loop();
+    }, rand);
+}());
 
 function get_random_color() {
   var colors = [
