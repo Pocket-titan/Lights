@@ -17,14 +17,14 @@ function animation_loop () {
     pixelData[led] = get_random_color()
   }
   ws281x.render(pixelData);
-  ws281x.setBrightness(Math.round(Math.random()*200 + (255 - 200)));
+  ws281x.setBrightness(Math.round(Math.random()*100 + (255 - 100)));
 }
 
 (function loop() {
     var rand = Math.round(Math.random() * (200)) + 100;
     setTimeout(function() {
-            animation_loop();
-            loop();
+        animation_loop();
+        loop();
     }, rand);
 }());
 
