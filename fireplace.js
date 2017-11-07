@@ -21,7 +21,7 @@ function animation_loop () {
 }
 
 (function loop() {
-    var rand = Math.round(Math.random() * (150)) + 50;
+    var rand = Math.round(Math.random() * (150)) + 90;
     setTimeout(function() {
         animation_loop();
         loop();
