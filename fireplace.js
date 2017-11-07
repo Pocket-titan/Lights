@@ -33,10 +33,7 @@ function get_random_color() {
     {'r':255, 'g':88, 'b':0 },
     {'r':247, 'g':148, 'b':0 },
     {'r':255, 'g':148, 'b':0 },
-    {'r':255, 'g':198, 'b':0 },
-    {'r':255, 'g':232, 'b':0 },
     {'r':255, 'g':98, 'b':0 },
-    {'r':255, 'g':56, 'b':55 },
   ]
   var random_color = colors[Math.floor(Math.random()*colors.length)];
   return rgb2Int(random_color['r'], random_color['b'], random_color['g'])
