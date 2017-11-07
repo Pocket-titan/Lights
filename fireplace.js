@@ -21,7 +21,7 @@ function animation_loop () {
 }
 
 (function loop() {
-    var rand = Math.round(Math.random() * (5000 - 4000)) + 4000;
+    var rand = Math.round(Math.random() * (1700)) + 100;
     setTimeout(function() {
             animation_loop();
             loop();
